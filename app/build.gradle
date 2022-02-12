@@ -1,0 +1,135 @@
+import com.kananagila_software_solution.starterproject.buildSrc.Libs
+
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.kananagila_software_solution.starterproject"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
+    lintOptions {
+        abortOnError true
+    }
+}
+
+dependencies {
+    // Accompanist
+    implementation Libs.Accompanist.permissions
+
+    // App compat
+    implementation Libs.AndroidX.appcompat
+
+    // Compose activity
+    implementation Libs.AndroidX.Activity.activityCompose
+
+    // Core ktx
+    implementation Libs.AndroidX.coreKtx
+
+    // Compose
+    implementation Libs.AndroidX.Compose.ui
+    implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Compose.materialIconsExtended
+    implementation Libs.AndroidX.Compose.toolingPreview
+
+    // DataStore
+    implementation Libs.AndroidX.DataStore.preferences
+
+    // Hilt
+    kapt Libs.AndroidX.Hilt.compiler
+    implementation Libs.AndroidX.Hilt.navigation
+    implementation Libs.AndroidX.Hilt.lifecycleViewModel
+
+    // Lifecycle
+    implementation Libs.AndroidX.Lifecycle.viewModelCompose
+    implementation Libs.AndroidX.Lifecycle.lifeCycleRuntime
+
+    // Navigation
+    implementation Libs.AndroidX.Navigation.compose
+
+    // Room
+    kapt Libs.AndroidX.Room.compiler
+    implementation Libs.AndroidX.Room.ktx
+    implementation Libs.AndroidX.Room.runtime
+
+    // Splash screen
+    implementation Libs.AndroidX.splashScreen
+
+    // Coil
+    implementation Libs.Coil.coilCompose
+
+    // Coroutines
+    implementation Libs.Coroutines.android
+    implementation Libs.Coroutines.core
+
+    // Dagger
+    implementation Libs.Dagger.android
+    kapt Libs.Dagger.compiler
+
+    // Gson
+    implementation Libs.gson
+
+    // KotlinX Serialization
+    implementation Libs.KotlinX.serialization
+
+    // Google material
+    implementation Libs.material
+
+    // OkHttp
+    implementation Libs.OkHttp.okHttp
+    implementation Libs.OkHttp.loggingInterceptor
+
+    // Retrofit
+    implementation Libs.Retrofit.retrofit
+    implementation Libs.Retrofit.converterGson
+
+    // Tests and debug
+    androidTestImplementation Libs.AndroidX.Test.Ext.junit
+    androidTestImplementation Libs.AndroidX.Test.espressoCore
+    androidTestImplementation Libs.AndroidX.Compose.uiTest
+    debugImplementation Libs.AndroidX.Compose.tooling
+    testImplementation Libs.junit
+
+    // Stdlib
+    implementation Libs.Kotlin.stdlib
+}
